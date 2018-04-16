@@ -1,0 +1,40 @@
+.Buttons {
+  text-align: center;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.buttons-list {
+  list-style: none;
+  flex-grow: 1;
+  margin: 0;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+}
+
+.button {
+  width: 25%;
+  margin: 0;
+  border: 1px black solid;
+  box-sizing: border-box;
+}
+
+.buttons-list .zero {
+  width: 50%;
+}
+
+.top-row {
+  background: #d6d6d6;
+}
+
+.operator {
+  background: rgba(221, 41, 41, .9);
+  border: 1px #000 solid;
+}
+
+.active-operator {
+  background: rgba(221, 41, 41, .9);
+  border: 1px #fff solid;
+}
