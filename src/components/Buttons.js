@@ -25,7 +25,7 @@ class Buttons extends Component {
     var operators = ['/','*','-','+']
     if (e.key === "Enter" || e.key === "=") {
       this.handleSolveClick();
-    } else if (e.key === "c" || e.key === "C" || e.key === "Delete") {
+    } else if (e.key === "c" || e.key === "C") {
         this.handleClearClick();
     } else if (nums.includes(e.key)) {
         this.handleNumberClick(e.key);
@@ -35,6 +35,8 @@ class Buttons extends Component {
         this.handlePercentClick();
     } else if (e.key === '!') {
         this.handlePosNegClick();
+    } else if (e.key === "Backspace") {
+        this.handleBackspaceClick();
     }
   }
 
@@ -65,6 +67,31 @@ class Buttons extends Component {
       current: newValue,
       displayValue: newValue
     });
+  }
+
+  handleBackspaceClick() {
+    let currentValue = this.state.current
+    if (currentValue !== 0) {
+      // split current into array to change it
+      let newValue = currentValue.split('');
+      // if current is only 1 digit, set to 0 so that current does not get nullified.
+      if (newValue.length === 1) {
+        this.setState({
+          solved: false,
+          current: 0,
+          displayValue: 0
+        })
+      // Pop last number off of current, join it, update state
+      } else {
+        newValue.pop();
+        newValue = newValue.join('');
+        this.setState({
+          solved: false,
+          current: newValue,
+          displayValue: newValue
+        });
+      }
+    };
   }
 
   handleOperatorClick(operator) {
