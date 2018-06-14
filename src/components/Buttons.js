@@ -71,27 +71,32 @@ class Buttons extends Component {
 
   handleBackspaceClick() {
     let currentValue = this.state.current
-    if (currentValue !== 0) {
-      // split current into array to change it
-      let newValue = currentValue.split('');
-      // if current is only 1 digit, set to 0 so that current does not get nullified.
-      if (newValue.length === 1) {
-        this.setState({
-          solved: false,
-          current: 0,
-          displayValue: 0
-        })
-      // Pop last number off of current, join it, update state
-      } else {
-        newValue.pop();
-        newValue = newValue.join('');
-        this.setState({
-          solved: false,
-          current: newValue,
-          displayValue: newValue
-        });
-      }
-    };
+    // if current is a negative number or a float, do nothing
+    if (currentValue < 0 || currentValue % 1 !== 0) {
+      return null;
+    } else {
+      if (currentValue !== 0) {
+        // split current into array to change it
+        let newValue = currentValue.split('');
+        // if current is only 1 digit, set to 0 so that current does not get nullified.
+        if (newValue.length === 1) {
+          this.setState({
+            solved: false,
+            current: 0,
+            displayValue: 0
+          })
+          // Pop last number off of current, join it, update state
+        } else {
+          newValue.pop();
+          newValue = newValue.join('');
+          this.setState({
+            solved: false,
+            current: newValue,
+            displayValue: newValue
+          });
+        }
+      };
+    }
   }
 
   handleOperatorClick(operator) {
